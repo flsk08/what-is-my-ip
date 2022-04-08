@@ -1,10 +1,10 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Skeleton from '@mui/material/Skeleton';
 
-import MyMap from './components/MyMap';
+import MyMap from "./components/MyMap";
 import CountryInfo from "./components/CountryInfo";
-
 
 function App() {
   const [userIP, setUserIP] = useState();
@@ -28,7 +28,6 @@ function App() {
     getIP();
   }, []);
 
-
   return (
     <div className="App">
       <div className="wrapper">
@@ -38,19 +37,21 @@ function App() {
           )}
         </div>
         <div className="map">
-          {userLocation && <MyMap userLocation={userLocation} />}
+          {userLocation ? (
+            <MyMap userLocation={userLocation} />
+          ) : (
+            <Skeleton variant="rectangular" width={400} height={700} />
+          )}
         </div>
 
         <div className="userIP-address">
           {userIP && <div>Your IP address: {userIP}</div>}
           <div>
-            {userLocation ? (
+            {userLocation && (
               <div>
                 Your location: {userLocation.city} <br /> {userLocation.region}
                 {userLocation.country}
               </div>
-            ) : (
-              "Loading..."
             )}
           </div>
         </div>
