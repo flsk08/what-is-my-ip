@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Skeleton from '@mui/material/Skeleton';
+import Skeleton from "@mui/material/Skeleton";
 
 import MyMap from "./components/MyMap";
 import CountryInfo from "./components/CountryInfo";
@@ -30,32 +30,39 @@ function App() {
 
   return (
     <div className="App">
-      <div className="wrapper">
-        <div className="countryInfo-container">
-          {userLocation && (
-            <CountryInfo userCountryCode={userLocation.country} />
-          )}
-        </div>
-        <div className="map">
-          {userLocation ? (
-            <MyMap userLocation={userLocation} />
-          ) : (
-            <Skeleton variant="rectangular" width={400} height={700} />
-          )}
-        </div>
-
-        <div className="userIP-address">
-          {userIP && <div>Your IP address: {userIP}</div>}
-          <div>
+      {userLocation ? (
+        <div className="wrapper">
+          <div className="countryInfo-container">
             {userLocation && (
-              <div>
-                Your location: {userLocation.city} <br /> {userLocation.region}
-                {userLocation.country}
-              </div>
+              <CountryInfo userCountryCode={userLocation.country} />
             )}
           </div>
+          <div className="map">
+            {userLocation && <MyMap userLocation={userLocation} />}
+          </div>
+
+          <div className="userIP-address">
+            {userIP && (
+              <div>
+                <b>Your IP address: {userIP}</b>
+              </div>
+            )}
+            <div>
+              {userLocation && (
+                <div>
+                  <b>
+                    Your current location: {userLocation.city} <br />
+                    {userLocation.region}
+                  </b>
+                  {/* {userLocation.country} */}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <Skeleton variant="rectangular" width={400} height={700} />
+      )}
     </div>
   );
 }
