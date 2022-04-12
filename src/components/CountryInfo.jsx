@@ -22,8 +22,8 @@ export default function CountryInfo({ userCountryCode }) {
     <div className="countryInfo">
       {countryInfo && (
         <>
-          <h2>{countryInfo.region}</h2>
-          <p>{countryInfo.altSpellings[1]}</p>
+          {/* <h2>{countryInfo.region}</h2>
+          <p>{countryInfo.altSpellings[1]}</p> */}
           <img src={countryInfo.flags.png} alt={countryInfo.altSpellings[1]} />
         </>
       )}

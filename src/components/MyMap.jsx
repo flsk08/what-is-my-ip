@@ -5,7 +5,7 @@ import { Map, Marker } from "pigeon-maps";
 export default function MyMap({userLocation}) {
   return (
     <Map
-      width={400}
+      width={800}
       height={300}
       defaultCenter={[userLocation.lat, userLocation.lng]}
       defaultZoom={11}

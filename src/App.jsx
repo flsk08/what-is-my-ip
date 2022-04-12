@@ -15,12 +15,11 @@ function App() {
     const getIP = async () => {
       try {
         const resp = await axios.get(
-          // "https://geo.ipify.org/api/v2/country?apiKey=at_UrcEiQWtH3EfNdeQsHL75arryuhcT"
           `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_IPIFY_KEY}`
         );
         setUserIP(resp.data.ip);
         setUserLocation(resp.data.location);
-        //console.log(resp.data);
+        console.log(resp.data)
       } catch (err) {
         console.log(err);
       }
@@ -30,38 +29,41 @@ function App() {
 
   return (
     <div className="App">
+      <h1>IP FINDER</h1>
       {userLocation ? (
         <div className="wrapper">
-          <div className="countryInfo-container">
-            {userLocation && (
-              <CountryInfo userCountryCode={userLocation.country} />
-            )}
+          <div className="info">
+            <div className="countryInfo-container">
+              {userLocation && (
+                <CountryInfo userCountryCode={userLocation.country} />
+              )}
+            </div>
+            <div className="userIP-address">
+              {userIP && (
+                <div>
+                  <b>Your IP address: <br/> {userIP}</b>
+                </div>
+              )}
+              <br/>
+              <div>
+                {userLocation && (
+                  <div>
+                    <b>
+                       Your current location: <br/> {userLocation.city} &nbsp;
+                      {userLocation.region}
+                    </b>
+                    {/* {userLocation.country} */}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
           <div className="map">
             {userLocation && <MyMap userLocation={userLocation} />}
           </div>
-
-          <div className="userIP-address">
-            {userIP && (
-              <div>
-                <b>Your IP address: {userIP}</b>
-              </div>
-            )}
-            <div>
-              {userLocation && (
-                <div>
-                  <b>
-                    Your current location: {userLocation.city} <br />
-                    {userLocation.region}
-                  </b>
-                  {/* {userLocation.country} */}
-                </div>
-              )}
-            </div>
-          </div>
         </div>
       ) : (
-        <Skeleton variant="rectangular" width={400} height={700} />
+        <Skeleton variant="rectangular" width={800} height={563} />
       )}
     </div>
   );

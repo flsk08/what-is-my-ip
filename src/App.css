@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  letter-spacing: 1px;
 }
 
 body {
@@ -19,8 +20,14 @@ body {
   width: 400px;
 }
 
-.countryInfo h2,
-.countryInfo p {
+.info {
   display: flex;
-  justify-content: center;
+  width: 800px;
+  margin-top: 1rem;
+}
+
+.userIP-address {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
 }
