@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>IP FINDER</h1>
+      <h1>WHAT'S MY IP?</h1>
       {userLocation ? (
         <div className="wrapper">
           <div className="info">
